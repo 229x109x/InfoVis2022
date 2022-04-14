@@ -21,6 +21,7 @@ class Vec3
         this.x -=v.x;
         this.y -=v.y;
         this.z -=v.z;
+        return this;
     }
 
     sum()
@@ -37,7 +38,7 @@ class Vec3
     max()
     {
         const m = this.x > this.y ? this.x : this.y;
-        return m > this.z ? this.z : m;}
+        return m > this.z ? m : this.z;
     }
 
     mid()
