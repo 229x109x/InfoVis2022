@@ -16,7 +16,7 @@
 	        .attr("width", function(d){ return d.data; })
 	        .attr("height", function(d){return 20;})
 	        .style("fill", function(d){ return d.color; })
-        svg.select("rect")
+        svg.selectAll("rect")
         .data(data)
             .enter()
             .append("text")
