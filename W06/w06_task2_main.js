@@ -6,7 +6,7 @@ d3.csv("https://229x109x.github.io/InfoVis2022/W04/w04_task1.csv")
             parent: '#drawing_region',
             width: 256,
             height: 256,
-            margin: {top:10, right:10, bottom:20, left:30}
+            margin: {top:30, right:10, bottom:40, left:50}
         };
 
         const scatter_plot = new ScatterPlot( config, data );
@@ -23,7 +23,7 @@ class ScatterPlot {
             parent: config.parent,
             width: config.width || 256,
             height: config.height || 256,
-            margin: config.margin || {top:10, right:10, bottom:10, left:30}
+            margin: config.margin || {top:10, right:10, bottom:10, left:10}
         }
         this.data = data;
         this.init();
@@ -87,7 +87,24 @@ class ScatterPlot {
             .attr("cy", d => self.yscale( d.y ) )
             .attr("r", d => d.r );
 
-        self.svg.select("text")
+        self.svg.append("text")
+            .attr("x", self.config.width/2-30)
+            .attr("y", 15)
+            .text("Chart Title")
+            .attr("font-size", 20)
+
+        self.svg.append("text")
+            .attr("x", self.config.width/2-10)
+            .attr("y", self.config.height)
+            .text("X-label")
+            .attr("font-size", 15)
+
+        self.svg.append("text")
+            .attr("x", 20)
+            .attr("y", self.config.height/2+20)
+            .attr("transform", `rotate(-90, 20, ${self.config.height/2+20})`)
+            .text("Y-label")
+            .attr("font-size", 15)
 
         self.xaxis_group
             .call( self.xaxis );
