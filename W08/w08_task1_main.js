@@ -1,12 +1,12 @@
 d3.csv("https://229x109x.github.io/InfoVis2022/W04/w04_task2.csv")
     .then( data => {
-        data.forEach( d => { d.label = d.label; d.data = d.data; });
+        data.forEach( d => { d.label = d.label; d.data = +d.data; d.color = d.color });
 
         var config = {
             parent: '#drawing_region',
             width: 256,
             height: 128,
-            margin: {top:10, right:10, bottom:20, left:60}
+            margin: {top:20, right:10, bottom:30, left:80}
         };
 
         const barchart_plot = new BarChart( config, data );
@@ -83,26 +83,27 @@ class BarChart {
             .attr("x", 0)
             .attr("y", d => self.yscale( d.label ) )
             .attr("width", d => self.xscale(d.data))
-            .attr("height", self.yscale.bandwidth() );
+            .attr("height", self.yscale.bandwidth() )
+            .style("fill", d => d.color);
 
-        //self.svg.append("text")
-        //    .attr("x", self.config.width/2-30)
-        //    .attr("y", 15)
-        //    .text("Chart Title")
-        //    .attr("font-size", 20)
+        self.svg.append("text")
+            .attr("x", self.config.width/2-30)
+            .attr("y", 15)
+            .text("Chart Title")
+            .attr("font-size", 20)
 
-        //self.svg.append("text")
-        //    .attr("x", self.config.width/2-10)
-        //    .attr("y", self.config.height)
-        //    .text("X-label")
-        //    .attr("font-size", 15)
+        self.svg.append("text")
+            .attr("x", self.config.width/2-10)
+            .attr("y", self.config.height)
+            .text("X-label")
+            .attr("font-size", 15)
 
-        //self.svg.append("text")
-        //    .attr("x", 20)
-        //    .attr("y", self.config.height/2+20)
-        //    .attr("transform", `rotate(-90, 20, ${self.config.height/2+20})`)
-        //    .text("Y-label")
-        //    .attr("font-size", 15)
+        self.svg.append("text")
+            .attr("x", 20)
+            .attr("y", self.config.height/2+20)
+            .attr("transform", `rotate(-90, 20, ${self.config.height/2+20})`)
+            .text("Y-label")
+            .attr("font-size", 15)
 
         self.xaxis_group
             .call( self.xaxis );
