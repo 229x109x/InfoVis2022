@@ -81,34 +81,34 @@ class BarChart {
             .enter()
             .append("rect")
             .attr("x", 0)
-            .attr("y", d => self.yscale( d.label ) )
+            .attr("y", d => self.yscale(d.label))
             .attr("width", d => self.xscale(d.data))
-            .attr("height", self.yscale.bandwidth() )
+            .attr("height", self.yscale.bandwidth())
             .style("fill", d => d.color);
 
         self.svg.append("text")
             .attr("x", self.config.width/2-30)
-            .attr("y", 15)
+            .attr("y",15)
             .text("Chart Title")
-            .attr("font-size", 20)
+            .attr("font-size",20)
 
         self.svg.append("text")
             .attr("x", self.config.width/2-10)
             .attr("y", self.config.height)
             .text("X-label")
-            .attr("font-size", 15)
+            .attr("font-size",15)
 
         self.svg.append("text")
             .attr("x", 20)
             .attr("y", self.config.height/2+20)
-            .attr("transform", `rotate(-90, 20, ${self.config.height/2+20})`)
+            .attr("transform",`rotate(-90,20,${self.config.height/2+20})`)
             .text("Y-label")
-            .attr("font-size", 15)
+            .attr("font-size",15)
 
         self.xaxis_group
-            .call( self.xaxis );
+            .call(self.xaxis);
             
         self.yaxis_group
-            .call( self.yaxis );
+            .call(self.yaxis);
     }
 }
