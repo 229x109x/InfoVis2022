@@ -3,8 +3,8 @@
 <style>
 
 svg {
-  font: 10px sans-serif;
-  padding: 10px;
+  font: 8px sans-serif;
+  padding: 8px;
 }
 
 .axis,
@@ -51,7 +51,7 @@ circle.hidden {
 
 var width = 960,
     size = 230,
-    padding = 20;
+    padding = 40;
 
 var x = d3.scale.linear()
     .range([padding / 2, size - padding / 2]);
@@ -75,11 +75,11 @@ d3.csv("songs.csv", function(error, data) {
   if (error) throw error;
 
   var domainByTrait = {},
-      traits = d3.keys(data[0]).filter(function(d) { return d != "" && d != "Position" && d != "energy" && d != "acousticness" && d != "mode" && d != "valence" && d != "time_signature" && d != "Streams" && d != "Track Name" && d != "Artist" && d != "Stream" && d != "URL" && d != "type" && d != "id" && d != "uri" && d != "track_href" && d != "analysis_url"; }),
+      traits = d3.keys(data[0]).filter(function(d) { return d != "danceability" && d != "energy" && d != "key" && d != "liveness" && d != "loudness" && d != "mode" && d != "speechiness" && d != "tempo" && d != "valence" && d != "acousticness" && d != "" && d != "Position" && d != "time_signature" && d != "Track Name" && d != "Artist" && d != "Streams" && d != "URL" && d != "type" && d != "id" && d != "uri" && d != "track_href" && d != "analysis_url"; }),
       n = traits.length;
-
+      
   traits.forEach(function(trait) {
-    domainByTrait[trait] = d3.extent(data, function(d) { return d[trait]; });
+    domainByTrait[trait] = d3.extent(data, function(d) { return +d[trait]; });
   });
 
   xAxis.tickSize(size * n);

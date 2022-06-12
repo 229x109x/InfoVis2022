@@ -63,7 +63,7 @@ d3.csv("songs.csv", function(error, songs) {
 
   // Extract the list of dimensions and create a scale for each.
   x.domain(dimensions = d3.keys(songs[0]).filter(function(d) {
-    return d != "" && d != "Track Name" && d != "Artist" && d != "Streams" && d != "URL" && d != "type" && d != "id" && d != "uri" && d != "track_href" && d != "analysis_url" && (y[d] = d3.scale.linear()
+    return d != "" && d != "Position" && d != "time_signature" && d != "Track Name" && d != "Artist" && d != "Streams" && d != "URL" && d != "type" && d != "id" && d != "uri" && d != "track_href" && d != "analysis_url" && (y[d] = d3.scale.linear()
         .domain(d3.extent(songs, function(p) { return +p[d]; }))
         .range([height, 0]));
   }));
